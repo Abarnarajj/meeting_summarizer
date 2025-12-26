@@ -81,14 +81,6 @@ This project uses **OpenRouter**, not OpenAI directly.
 Create an API key here:  
 https://openrouter.ai/settings/keys
 
-Set the API key as an environment variable:
-
-```bash
-setx OPENROUTER_API_KEY "your_openrouter_api_key"
-```
-
-Restart the terminal after setting the key.
-
 ---
 
 ## Usage
