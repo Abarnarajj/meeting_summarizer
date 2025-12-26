@@ -1,6 +1,6 @@
 # Meeting Transcript Summarizer
 
-This project is a simple **command-line application** that summarizes meeting transcripts using an LLM via **LlamaIndex** and **OpenRouter**.  
+This project is a simple **command-line application** that summarizes meeting transcripts using an "gpt-3.5-turbo" via **LlamaIndex** and **OpenRouter**.  
 It reads a plain text meeting transcript, groups statements by speaker, and produces a concise bullet-point summary for each participant.
 
 ---
@@ -12,7 +12,7 @@ It reads a plain text meeting transcript, groups statements by speaker, and prod
 - Preserves exact speaker names
 - Produces short, clear bullet-point summaries
 - Uses **LlamaIndex** for prompt handling
-- Uses **OpenRouter** to access LLMs
+- Uses **OpenRouter** to access "gpt-3.5-turbo"
 
 ---
 
