@@ -14,14 +14,19 @@ def main():
         temperature=0.2,
     )
     template_content = """
-You are an assistant that summarizes meeting transcripts.
+You are helping summarize a meeting transcript.
 
-IMPORTANT RULES (follow strictly):
-- Group all statements by the same speaker into ONE bullet point
-- Preserve speaker names exactly
-- Merge multiple actions/updates into a single concise summary per speaker
-- Do NOT write paragraphs
---- Example ---
+Read the transcript and produce a short summary with bullet points.
+
+Guidelines:
+- Combine everything said by the same speaker into ONE bullet
+- Keep the speaker names exactly as they appear
+- Write each bullet as a complete, clear sentence (not fragments)
+- You may combine multiple updates using semicolons if needed
+- Do not write paragraphs or extra explanations
+
+Example:
+
 Transcript:
 Abarna: API integration is almost done.
 Abarna: Authentication issue is resolved.
@@ -30,14 +35,15 @@ Sarah: Client feedback is pending.
 Mike: I will set up staging by Wednesday.
 
 Summary:
-• Abarna: API integration progressing well; authentication issue resolved
-• Sarah: UI mockups updated; awaiting client feedback
-• Mike: Will set up staging server by Wednesday
---- End Example ---
+• Abarna: The API integration is progressing well, and the authentication issue has been resolved.
+• Sarah: The UI mockups have been updated, and client feedback is still pending.
+• Mike: He will set up the staging server by Wednesday.
 
-Transcript:
+Now summarize the following transcript:
+
 {transcript}
 """
+
     prompt = PromptTemplate(template=template_content)
     response = llm.complete(prompt.format(transcript=transcript))
     print("\n Meeting Summary:\n")
@@ -45,10 +51,3 @@ Transcript:
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
