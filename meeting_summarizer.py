@@ -1,24 +1,18 @@
 import os
 from llama_index.llms.openrouter import OpenRouter
 from llama_index.core import PromptTemplate
-
 def main():
-    file_path = input("Enter the transcript file name: ").strip()
-
-    if not os.path.exists(file_path):
-        print(" File not found:", file_path)
+    file= input("Enter the transcript file name: ").strip()
+    if not os.path.exists(file):
+        print(" File not found:", file)
         return
-
-    
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file, "r", encoding="utf-8") as f:
         transcript = f.read()
-
     llm = OpenRouter(
         model="gpt-3.5-turbo",
         api_key="",  
         temperature=0.2,
     )
-
     template_content = """
 You are an assistant that summarizes meeting transcripts.
 
@@ -27,8 +21,6 @@ IMPORTANT RULES (follow strictly):
 - Preserve speaker names exactly
 - Merge multiple actions/updates into a single concise summary per speaker
 - Do NOT write paragraphs
-
-
 --- Example ---
 Transcript:
 Abarna: API integration is almost done.
@@ -46,13 +38,8 @@ Summary:
 Transcript:
 {transcript}
 """
-
-
     prompt = PromptTemplate(template=template_content)
-
-    
     response = llm.complete(prompt.format(transcript=transcript))
-
     print("\n Meeting Summary:\n")
     print(response.text.strip())
 
