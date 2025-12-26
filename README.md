@@ -1,23 +1,24 @@
-Meeting Transcript Summarizer 
+# Meeting Transcript Summarizer
 
-This project is a simple command-line application that summarizes meeting transcripts using an LLM via LlamaIndex and OpenRouter.
+This project is a simple **command-line application** that summarizes meeting transcripts using an LLM via **LlamaIndex** and **OpenRouter**.  
 It reads a plain text meeting transcript, groups statements by speaker, and produces a concise bullet-point summary for each participant.
 
-Features
+---
 
-Reads meeting transcripts from a .txt file
+## Features
 
-Groups multiple statements from the same speaker into a single summary
+- Reads meeting transcripts from a `.txt` file
+- Groups multiple statements from the same speaker into a single summary
+- Preserves exact speaker names
+- Produces short, clear bullet-point summaries
+- Uses **LlamaIndex** for prompt handling
+- Uses **OpenRouter** to access LLMs
 
-Preserves exact speaker names
+---
 
-Produces short, clear bullet-point summaries
+## Example Input (`transcript.txt`)
 
-Uses LlamaIndex for prompt handling
-
-Uses OpenRouter to access LLMs
-
-Example Input (transcript.txt)
+```
 Meera: The client demo went well overall, but they had concerns about the loading time.
 Arjun: Yes, especially on the reports page, the load time crossed five seconds.
 Sanjay: I checked the logs and found multiple redundant API calls.
@@ -31,56 +32,86 @@ Arjun: Backend fixes should be done by Thursday end.
 Sanjay: Database optimizations will be completed by Wednesday.
 Priya: I will schedule regression testing on Friday.
 Meera: Good, I will update the client on progress.
+```
 
-Example Output
+---
+
+## Example Output
+
 ![output](https://github.com/user-attachments/assets/da2af639-dcd5-444a-a631-fc9a0e38910d)
-             
-Requirements
 
-Python 3.9+
+---
 
-Virtual environment (recommended)
+## Requirements
 
-OpenRouter API key
+- Python 3.9+
+- Virtual environment (recommended)
+- OpenRouter API key
 
-Installation
-1. Clone the repository
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/Abarnarajj/meeting_summarizer.git
 cd meeting_summarizer
+```
 
-2. Create and activate virtual environment
+### 2. Create and activate a virtual environment
+
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-3. Install dependencies
+### 3. Install dependencies
+
+```bash
 pip install llama-index llama-index-llms-openrouter
+```
 
-API Key
+---
 
-This project uses OpenRouter, not OpenAI directly.
+## API Key Setup
+
+This project uses **OpenRouter**, not OpenAI directly.
+
+Create an API key here:  
 https://openrouter.ai/settings/keys
 
-Usage
+Set the API key as an environment variable:
+
+```bash
+setx OPENROUTER_API_KEY "your_openrouter_api_key"
+```
+
+Restart the terminal after setting the key.
+
+---
+
+## Usage
 
 Run the summarizer script:
 
+```bash
 python meeting_summarizer.py
-
+```
 
 When prompted, enter the transcript file name:
 
+```
 Enter the transcript file name: transcript.txt
+```
 
-How It Works
+---
 
-Reads transcript text from a file
+## How It Works
 
-Sends transcript to the LLM using a structured prompt
-
-Enforces strict rules:
-
-Merges multiple updates into one summary
-
-No paragraphs
-
-Prints the final meeting summary to the console
+- Reads transcript text from a file
+- Sends the transcript to the LLM using a structured prompt
+- Enforces strict rules:
+  - Merges multiple updates into one summary per speaker
+  - No paragraphs
+- Prints the final meeting summary to the console
